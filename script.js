@@ -19,6 +19,38 @@ function addBook(e) {
     const newBook = new Book(titleValue, authorValue, pagesValue);
     myLibrary.push(newBook);
     document.querySelector("form").reset();
+    clearBooks();
+    displayBooks();
 }
 
 document.getElementById("submit").addEventListener("click", addBook);
+
+function displayBooks() {
+    myLibrary.forEach(book => {
+        const library = document.querySelector(".library");
+        const newBook = document.createElement("div");
+        newBook.className = "book";
+        library.appendChild(newBook);
+        const newTitle = document.createElement("div");
+        newTitle.className = "item";
+        newTitle.textContent = book.title;
+        newBook.appendChild(newTitle);
+        const newAuthor = document.createElement("div");
+        newAuthor.className = "item";
+        newAuthor.textContent = book.author;
+        newBook.appendChild(newAuthor);
+        const newPages = document.createElement("div");
+        newPages.className = "item";
+        newPages.textContent = book.pages;
+        newBook.appendChild(newPages);
+    });
+}
+
+function clearBooks() {
+    const library = document.querySelector(".library");
+    while (library.hasChildNodes()) {
+        library.removeChild(library.lastChild);
+    }
+}
+
+displayBooks();
