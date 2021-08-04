@@ -4,6 +4,10 @@ let myLibrary = [
     book3 = { title: "Animal Farm", author: "George Orwell", pages: "112" }
 ];
 
+displayBooks();
+
+document.querySelector("#submit-button").addEventListener("click", addBook);
+
 function Book(title, author, pages) {
     this.title = title;
     this.author = author;
@@ -11,24 +15,25 @@ function Book(title, author, pages) {
 }
 
 function addBook(e) {
-    const titleValue = document.getElementById("title").value;
-    const authorValue = document.getElementById("author").value;
-    const pagesValue = document.getElementById("pages").value;
+    const titleValue = document.querySelector("#title").value;
+    const authorValue = document.querySelector("#author").value;
+    const pagesValue = document.querySelector("#pages").value;
     if (titleValue === "" || authorValue === "" || pagesValue === "") return;
     e.preventDefault();
     const newBook = new Book(titleValue, authorValue, pagesValue);
     myLibrary.push(newBook);
     document.querySelector("form").reset();
-    clearBooks();
     displayBooks();
 }
 
-document.getElementById("submit").addEventListener("click", addBook);
-
 function displayBooks() {
+    const library = document.querySelector(".library");
+    while (library.hasChildNodes()) {
+        library.removeChild(library.lastChild);
+    }
     myLibrary.forEach(book => {
-        const library = document.querySelector(".library");
         const newBook = document.createElement("div");
+        newBook.dataset.id = myLibrary.indexOf(book);
         newBook.className = "book";
         library.appendChild(newBook);
         const newTitle = document.createElement("div");
@@ -43,14 +48,13 @@ function displayBooks() {
         newPages.className = "item";
         newPages.textContent = book.pages;
         newBook.appendChild(newPages);
+        const newRemoveButton = document.createElement("button");
+        newRemoveButton.className = "remove-button";
+        newRemoveButton.textContent = "X";
+        newBook.appendChild(newRemoveButton);
+        newRemoveButton.addEventListener("click", () => {
+            myLibrary.splice(newBook.dataset.id, 1);
+            displayBooks();
+        });
     });
 }
-
-function clearBooks() {
-    const library = document.querySelector(".library");
-    while (library.hasChildNodes()) {
-        library.removeChild(library.lastChild);
-    }
-}
-
-displayBooks();

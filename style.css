@@ -33,7 +33,7 @@ form {
     margin-top: 20px;
     background-color: #fff;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 3px;
     box-sizing: border-box;
     display: flex;
     justify-content: space-evenly;
@@ -45,4 +45,20 @@ form {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.remove-button {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    background-color: #d61f1f;
+    color: #fff;
+    border: 1px solid #c51c1c;
+    border-radius: 3px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.remove-button:active {
+    background-color: #c51c1c;
 }
