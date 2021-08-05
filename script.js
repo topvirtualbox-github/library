@@ -1,26 +1,28 @@
 let myLibrary = [
-    book1 = { title: "1984", author: "George Orwell", pages: "328" },
-    book2 = { title: "Fahrenheit 451", author: "Ray Bradbury", pages: "256" },
-    book3 = { title: "Animal Farm", author: "George Orwell", pages: "112" }
+    book1 = { title: "1984", author: "George Orwell", pages: "328", status: true },
+    book2 = { title: "Fahrenheit 451", author: "Ray Bradbury", pages: "256", status: false },
+    book3 = { title: "Animal Farm", author: "George Orwell", pages: "112", status: true }
 ];
 
 displayBooks();
 
 document.querySelector("#submit-button").addEventListener("click", addBook);
 
-function Book(title, author, pages) {
+function Book(title, author, pages, status) {
     this.title = title;
     this.author = author;
     this.pages = pages;
+    this.status = status;
 }
 
 function addBook(e) {
     const titleValue = document.querySelector("#title").value;
     const authorValue = document.querySelector("#author").value;
     const pagesValue = document.querySelector("#pages").value;
+    const statusChecked = document.querySelector("#status").checked;
     if (titleValue === "" || authorValue === "" || pagesValue === "") return;
     e.preventDefault();
-    const newBook = new Book(titleValue, authorValue, pagesValue);
+    const newBook = new Book(titleValue, authorValue, pagesValue, statusChecked);
     myLibrary.push(newBook);
     document.querySelector("form").reset();
     displayBooks();
@@ -48,6 +50,16 @@ function displayBooks() {
         newPages.className = "item";
         newPages.textContent = book.pages;
         newBook.appendChild(newPages);
+        const newStatusButton = document.createElement("button");
+        newStatusButton.className = "status-button";
+        if (book.status) { newStatusButton.textContent = "YES"; }
+        else { newStatusButton.textContent = "NO"; }
+        newBook.appendChild(newStatusButton);
+        newStatusButton.addEventListener("click", () => {
+            if (myLibrary[newBook.dataset.id].status) { myLibrary[newBook.dataset.id].status = false; }
+            else { myLibrary[newBook.dataset.id].status = true; }
+            displayBooks();
+        });
         const newRemoveButton = document.createElement("button");
         newRemoveButton.className = "remove-button";
         newRemoveButton.textContent = "X";

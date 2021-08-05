@@ -12,7 +12,7 @@ main {
 }
 
 form {
-    height: 200px;
+    height: 300px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -45,6 +45,21 @@ form {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.status-button {
+    width: 50px;
+    height: 30px;
+    margin-right: 30px;
+    background-color: #eee;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.status-button:active {
+    background-color: #ddd;
 }
 
 .remove-button {
