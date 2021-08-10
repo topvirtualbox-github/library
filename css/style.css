@@ -41,18 +41,19 @@ main {
     flex-grow: 1;
 }
 
-.library {
+.display {
     width: 100%;
+    margin-top: 25px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }
 
-.book {
+.item {
     width: 250px;
     height: 250px;
-    margin: 5px;
+    margin: 10px;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 3px;
@@ -83,13 +84,37 @@ footer a {
     FORM
 ========== */
 
-form {
+.form-background {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.form-background-active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.form-container {
     width: 300px;
-    height: 300px;
+    height: 350px;
+    background-color: #eee;
+    border: 1px solid #ddd;
+    border-radius: 3px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    position: relative;
 }
 
 form input,
@@ -103,8 +128,8 @@ form select {
     BUTTONS
 ========== */
 
+.button-add,
 .button-submit {
-    margin-top: 10px;
     padding: 0.5rem;
     background-color: #0755ff;
     color: #fff;
@@ -114,8 +139,21 @@ form select {
     cursor: pointer;
 }
 
+.button-add:active,
 .button-submit:active {
     background-color: #0148e2;
+}
+
+.button-close {
+    padding: 0.3rem;
+    background-color: transparent;
+    color: #0755ff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    position: absolute;
+    top: 3px;
+    right: 3px;
 }
 
 .button-read {

@@ -18,7 +18,15 @@
         <h1>Library</h1>
     </header>
     <main>
-        <form>
+        <button class="button-add">Add button</button>
+        <div class="display"></div>
+    </main>
+    <footer>
+        <span>by topvirtualbox |</span>
+        <a href="https://github.com/topvirtualbox-github/library">Github</a>
+    </footer>
+    <div class="form-background">
+        <form class="form-container">
             <input id="title" type="text" placeholder="Title" required>
             <input id="author" type="text" placeholder="Author" required>
             <input id="pages" type="number" placeholder="Pages" required>
@@ -28,13 +36,9 @@
                 <option value="YES">YES</option>
             </select>
             <button class="button-submit" type="submit">Submit</button>
+            <button class="button-close" type="button">X</button>
         </form>
-        <div class="library"></div>
-    </main>
-    <footer>
-        <span>by topvirtualbox |</span>
-        <a href="https://github.com/topvirtualbox-github/library">Github</a>
-    </footer>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

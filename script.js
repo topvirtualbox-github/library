@@ -6,7 +6,21 @@ let myLibrary = [
 
 displayBooks();
 
-document.querySelector(".button-submit").addEventListener("click", addBook);
+const addButton = document.querySelector(".button-add");
+const submitButton = document.querySelector(".button-submit");
+const closeButton = document.querySelector(".button-close");
+const backgroundForm = document.querySelector(".form-background");
+
+addButton.addEventListener("click", () => {
+    backgroundForm.classList.add("form-background-active");
+});
+submitButton.addEventListener("click", addBook);
+closeButton.addEventListener("click", () => {
+    backgroundForm.classList.remove("form-background-active");
+});
+backgroundForm.addEventListener("click", (e) => {
+    if (e.target === backgroundForm) { backgroundForm.classList.remove("form-background-active"); }
+});
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -29,15 +43,15 @@ function addBook(e) {
 }
 
 function displayBooks() {
-    const library = document.querySelector(".library");
-    while (library.hasChildNodes()) {
-        library.removeChild(library.lastChild);
+    const display = document.querySelector(".display");
+    while (display.hasChildNodes()) {
+        display.removeChild(display.lastChild);
     }
     myLibrary.forEach(book => {
         const newBook = document.createElement("div");
         newBook.dataset.id = myLibrary.indexOf(book);
-        newBook.className = "book";
-        library.appendChild(newBook);
+        newBook.className = "item";
+        display.appendChild(newBook);
         const newTitle = document.createElement("div");
         newTitle.textContent = book.title;
         newBook.appendChild(newTitle);
