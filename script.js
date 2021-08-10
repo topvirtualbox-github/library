@@ -1,28 +1,28 @@
 let myLibrary = [
-    book1 = { title: "1984", author: "George Orwell", pages: "328", status: true },
-    book2 = { title: "Fahrenheit 451", author: "Ray Bradbury", pages: "256", status: false },
-    book3 = { title: "Animal Farm", author: "George Orwell", pages: "112", status: true }
+    book1 = { title: "1984", author: "George Orwell", pages: "328", read: "YES" },
+    book2 = { title: "Fahrenheit 451", author: "Ray Bradbury", pages: "256", read: "NO" },
+    book3 = { title: "Animal Farm", author: "George Orwell", pages: "112", read: "YES" }
 ];
 
 displayBooks();
 
-document.querySelector("#submit-button").addEventListener("click", addBook);
+document.querySelector(".button-submit").addEventListener("click", addBook);
 
-function Book(title, author, pages, status) {
+function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.status = status;
+    this.read = read;
 }
 
 function addBook(e) {
     const titleValue = document.querySelector("#title").value;
     const authorValue = document.querySelector("#author").value;
     const pagesValue = document.querySelector("#pages").value;
-    const statusChecked = document.querySelector("#status").checked;
+    const readValue = document.querySelector("#read").value;
     if (titleValue === "" || authorValue === "" || pagesValue === "") return;
     e.preventDefault();
-    const newBook = new Book(titleValue, authorValue, pagesValue, statusChecked);
+    const newBook = new Book(titleValue, authorValue, pagesValue, readValue);
     myLibrary.push(newBook);
     document.querySelector("form").reset();
     displayBooks();
@@ -39,32 +39,29 @@ function displayBooks() {
         newBook.className = "book";
         library.appendChild(newBook);
         const newTitle = document.createElement("div");
-        newTitle.className = "item";
         newTitle.textContent = book.title;
         newBook.appendChild(newTitle);
         const newAuthor = document.createElement("div");
-        newAuthor.className = "item";
         newAuthor.textContent = book.author;
         newBook.appendChild(newAuthor);
         const newPages = document.createElement("div");
-        newPages.className = "item";
         newPages.textContent = book.pages;
         newBook.appendChild(newPages);
-        const newStatusButton = document.createElement("button");
-        newStatusButton.className = "status-button";
-        if (book.status) { newStatusButton.textContent = "YES"; }
-        else { newStatusButton.textContent = "NO"; }
-        newBook.appendChild(newStatusButton);
-        newStatusButton.addEventListener("click", () => {
-            if (myLibrary[newBook.dataset.id].status) { myLibrary[newBook.dataset.id].status = false; }
-            else { myLibrary[newBook.dataset.id].status = true; }
+        const newReadButton = document.createElement("button");
+        newReadButton.className = "button-read";
+        if (book.read === "YES") { newReadButton.textContent = "YES"; }
+        else { newReadButton.textContent = "NO"; }
+        newBook.appendChild(newReadButton);
+        newReadButton.addEventListener("click", () => {
+            if (myLibrary[newBook.dataset.id].read === "YES") { myLibrary[newBook.dataset.id].read = "NO"; }
+            else { myLibrary[newBook.dataset.id].read = "YES"; }
             displayBooks();
         });
-        const newRemoveButton = document.createElement("button");
-        newRemoveButton.className = "remove-button";
-        newRemoveButton.textContent = "X";
-        newBook.appendChild(newRemoveButton);
-        newRemoveButton.addEventListener("click", () => {
+        const newDeleteButton = document.createElement("button");
+        newDeleteButton.className = "button-delete";
+        newDeleteButton.textContent = "X";
+        newBook.appendChild(newDeleteButton);
+        newDeleteButton.addEventListener("click", () => {
             myLibrary.splice(newBook.dataset.id, 1);
             displayBooks();
         });
