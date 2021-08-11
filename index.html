@@ -8,7 +8,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&library=swap">
     <!-- CSS -->
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
@@ -18,8 +18,8 @@
         <h1>Library</h1>
     </header>
     <main>
-        <button class="button-add">Add book</button>
-        <div class="display"></div>
+        <button class="btn btn-open">Add book</button>
+        <div class="library"></div>
     </main>
     <footer>
         <span>by topvirtualbox |</span>
@@ -29,14 +29,14 @@
         <form class="form-container">
             <input id="title" type="text" placeholder="Title" required>
             <input id="author" type="text" placeholder="Author" required>
-            <input id="pages" type="number" placeholder="Pages" required>
+            <input id="pages" type="number" placeholder="Pages" min="0" required>
             <label for="read">Did you read the book?</label>
             <select id="read">
                 <option value="NO">NO</option>
                 <option value="YES">YES</option>
             </select>
-            <button class="button-submit" type="submit">Submit</button>
-            <button class="button-close" type="button">X</button>
+            <button class="btn btn-submit" type="submit">Submit</button>
+            <button class="btn btn-close" type="button">X</button>
         </form>
     </div>
     <script src="script.js"></script>
